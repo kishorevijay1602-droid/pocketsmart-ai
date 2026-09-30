@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Party Recommendations - PocketSmart AI</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/styles.css"
+    >
+
+    <style>
+
+        .result-card {
+            background: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 14px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .summary-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .summary-box {
+            background: #f5f7fb;
+
+            padding: 20px;
+
+            border-radius: 10px;
+
+            text-align: center;
+        }
+
+
+        .summary-box strong {
+            display: block;
+
+            color: #2563eb;
+
+            margin-bottom: 8px;
+        }
+
+
+        .ai-result {
+            background: #f8fafc;
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            white-space: pre-wrap;
+
+            line-height: 1.8;
+        }
+
+
+        .shopping-links {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+        }
+
+
+        .shopping-links a {
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 12px 20px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+        }
+
+
+        .shopping-links a:hover {
+            background: #1d4ed8;
+        }
+
+
+        .result-actions {
+            text-align: center;
+
+            margin: 30px 0;
+        }
+
+
+        @media (max-width: 800px) {
+
+            .summary-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            PocketSmart AI
+        </div>
+
+        <nav>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/home-planner">
+                Home Planner
+            </a>
+
+            <a href="/party-planner">
+                Party Planner
+            </a>
+
+            <a href="/login">
+                Login
+            </a>
+
+            <a href="/register">
+                Register
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="container">
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <h1>
+                🎉 Party Recommendations
+            </h1>
+
+            <h2>
+                AI-Powered Party Planning
+            </h2>
+
+            <p>
+                Here are your personalized party
+                recommendations based on your budget.
+            </p>
+
+        </section>
+
+
+        <!-- BUDGET SUMMARY -->
+
+        <section class="result-card">
+
+            <h2>
+                Budget Summary
+            </h2>
+
+            <br>
+
+            <div class="summary-grid">
+
+
+                <div class="summary-box">
+
+                    <strong>
+                        Total Budget
+                    </strong>
+
+                    ₹{{ budget }}
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <strong>
+                        Party Type
+                    </strong>
+
+                    {{ party_type }}
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <strong>
+                        Number of Guests
+                    </strong>
+
+                    {{ number_of_guests }}
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <strong>
+                        Venue Type
+                    </strong>
+
+                    {{ venue_type }}
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- AI RECOMMENDATIONS -->
+
+        <section class="result-card">
+
+            <h2>
+                🤖 AI Recommendations
+            </h2>
+
+            <br>
+
+            <div class="ai-result">
+
+                {{ recommendations }}
+
+            </div>
+
+        </section>
+
+
+        <!-- SHOPPING LINKS -->
+
+        <section class="result-card">
+
+            <h2>
+                🛒 Shopping & Services
+            </h2>
+
+            <br>
+
+            <div class="shopping-links">
+
+
+                {% if shopping_links.amazon %}
+
+                <a
+                    href="{{ shopping_links.amazon }}"
+                    target="_blank"
+                >
+                    Amazon
+                </a>
+
+                {% endif %}
+
+
+                {% if shopping_links.flipkart %}
+
+                <a
+                    href="{{ shopping_links.flipkart }}"
+                    target="_blank"
+                >
+                    Flipkart
+                </a>
+
+                {% endif %}
+
+
+                {% if shopping_links.meesho %}
+
+                <a
+                    href="{{ shopping_links.meesho }}"
+                    target="_blank"
+                >
+                    Meesho
+                </a>
+
+                {% endif %}
+
+
+                {% if shopping_links.zomato %}
+
+                <a
+                    href="{{ shopping_links.zomato }}"
+                    target="_blank"
+                >
+                    Zomato
+                </a>
+
+                {% endif %}
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ACTION -->
+
+        <div class="result-actions">
+
+            <a
+                href="/party-planner"
+                class="button"
+            >
+                Create Another Party Plan
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 PocketSmart AI Budget Planner
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>PocketSmart AI - Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='styles.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- ============================= -->
+    <!-- NAVBAR -->
+    <!-- ============================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            PocketSmart AI
+        </div>
+
+        <nav class="nav-links">
+
+            <a
+                href="/dashboard"
+                class="nav-button"
+            >
+                🏠 Dashboard
+            </a>
+
+            <a
+                href="/history"
+                class="nav-button"
+            >
+                📋 History
+            </a>
+
+            <a
+                href="/logout"
+                class="nav-button logout-button"
+            >
+                🚪 Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ============================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ============================= -->
+
+    <main class="container">
+
+        <!-- WELCOME -->
+
+        <section class="hero">
+
+            <h1>
+                Welcome to PocketSmart AI
+            </h1>
+
+            <p>
+                Plan your budget smartly with
+                AI-powered recommendations.
+            </p>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- PLANNER CARDS -->
+        <!-- ============================= -->
+
+        <section class="planner-grid">
+
+
+            <!-- HOME -->
+
+            <div class="planner-card">
+
+                <div class="planner-icon">
+                    🏠
+                </div>
+
+                <h3>
+                    Home Planner
+                </h3>
+
+                <p>
+                    Plan your home purchases based
+                    on your budget and requirements.
+                </p>
+
+                <a
+                    href="/home-planner"
+                    class="button"
+                >
+                    Open Home Planner
+                </a>
+
+            </div>
+
+
+            <!-- PARTY -->
+
+            <div class="planner-card">
+
+                <div class="planner-icon">
+                    🎉
+                </div>
+
+                <h3>
+                    Party Planner
+                </h3>
+
+                <p>
+                    Create a practical party plan
+                    with food, decoration and
+                    entertainment.
+                </p>
+
+                <a
+                    href="/party-planner"
+                    class="button"
+                >
+                    Open Party Planner
+                </a>
+
+            </div>
+
+
+            <!-- JEWELRY -->
+
+            <div class="planner-card">
+
+                <div class="planner-icon">
+                    💎
+                </div>
+
+                <h3>
+                    Jewelry Planner
+                </h3>
+
+                <p>
+                    Find suitable jewelry options
+                    based on your occasion and budget.
+                </p>
+
+                <a
+                    href="/jewelry-planner"
+                    class="button"
+                >
+                    Open Jewelry Planner
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- QUICK ACTIONS -->
+        <!-- ============================= -->
+
+        <section class="info-section">
+
+            <h2>
+                Quick Actions
+            </h2>
+
+            <div class="steps">
+
+
+                <div>
+
+                    <div class="planner-icon">
+                        📋
+                    </div>
+
+                    <strong>
+                        Recommendation History
+                    </strong>
+
+                    <p>
+                        View all your previously
+                        generated AI plans.
+                    </p>
+
+                    <a
+                        href="/history"
+                        class="button"
+                    >
+                        View History
+                    </a>
+
+                </div>
+
+
+                <div>
+
+                    <div class="planner-icon">
+                        🏠
+                    </div>
+
+                    <strong>
+                        Home Planning
+                    </strong>
+
+                    <p>
+                        Create a smart home budget
+                        and shopping plan.
+                    </p>
+
+                    <a
+                        href="/home-planner"
+                        class="button"
+                    >
+                        Plan Home
+                    </a>
+
+                </div>
+
+
+                <div>
+
+                    <div class="planner-icon">
+                        🎉
+                    </div>
+
+                    <strong>
+                        Party Planning
+                    </strong>
+
+                    <p>
+                        Create a party plan according
+                        to your budget.
+                    </p>
+
+                    <a
+                        href="/party-planner"
+                        class="button"
+                    >
+                        Plan Party
+                    </a>
+
+                </div>
+
+
+                <div>
+
+                    <div class="planner-icon">
+                        💎
+                    </div>
+
+                    <strong>
+                        Jewelry Planning
+                    </strong>
+
+                    <p>
+                        Get AI-powered jewelry
+                        recommendations.
+                    </p>
+
+                    <a
+                        href="/jewelry-planner"
+                        class="button"
+                    >
+                        Plan Jewelry
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ============================= -->
+    <!-- FOOTER -->
+    <!-- ============================= -->
+
+    <footer>
+
+        <p>
+            © 2026 PocketSmart AI Budget Planner
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

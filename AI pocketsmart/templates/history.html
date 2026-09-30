@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recommendation History - PocketSmart AI</title>
+
+    <link rel="stylesheet" href="/static/styles.css">
+
+    <style>
+        .history-page {
+            padding: 50px 20px;
+            min-height: 70vh;
+        }
+
+        .history-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .history-header h1 {
+            color: #2864e8;
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .history-header p {
+            color: #555;
+            font-size: 17px;
+        }
+
+        .history-actions {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .history-actions a {
+            display: inline-block;
+            margin: 5px;
+            padding: 12px 22px;
+            background: #2864e8;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .history-actions a:hover {
+            background: #174bbd;
+        }
+
+        .history-container {
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        .history-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #2864e8;
+        }
+
+        .history-card h2 {
+            margin-top: 0;
+            color: #222;
+        }
+
+        .history-card p {
+            color: #555;
+            margin: 8px 0;
+        }
+
+        .planner-badge {
+            display: inline-block;
+            background: #eaf1ff;
+            color: #2864e8;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .view-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 18px;
+            background: #2864e8;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .view-button:hover {
+            background: #174bbd;
+        }
+
+        .empty-history {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 55px 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .empty-history h2 {
+            color: #222;
+        }
+
+        .empty-history p {
+            color: #666;
+        }
+
+        .planner-buttons {
+            margin-top: 25px;
+        }
+
+        .planner-buttons a {
+            display: inline-block;
+            margin: 5px;
+            padding: 11px 18px;
+            background: #2864e8;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">PocketSmart AI</div>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/history">History</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+
+    <!-- HISTORY PAGE -->
+    <main class="history-page">
+
+        <div class="history-header">
+            <h1>📋 Recommendation History</h1>
+
+            <p>
+                View your previously generated PocketSmart AI plans
+            </p>
+        </div>
+
+
+        <div class="history-actions">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+
+
+        <div class="history-container">
+
+            {% if history and history|length > 0 %}
+
+                {% for item in history %}
+
+                    <div class="history-card">
+
+                        <span class="planner-badge">
+                            {{ item.planner }}
+                        </span>
+
+                        <h2>
+                            {{ item.planner }} Recommendation
+                        </h2>
+
+                        <p>
+                            <strong>Budget:</strong>
+                            ₹{{ item.budget }}
+                        </p>
+
+                        <p>
+                            <strong>Details:</strong>
+                            {{ item.details }}
+                        </p>
+
+                        {% if item.created_at %}
+                        <p>
+                            <strong>Created:</strong>
+                            {{ item.created_at }}
+                        </p>
+                        {% endif %}
+
+                        <a
+                            class="view-button"
+                            href="/history/{{ loop.index0 }}"
+                        >
+                            View Full Plan
+                        </a>
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty-history">
+
+                    <h2>📭 No Recommendations Yet</h2>
+
+                    <p>
+                        You haven't generated any AI plans yet.
+                    </p>
+
+                    <div class="planner-buttons">
+
+                        <a href="/home-planner">
+                            🏠 Home Planner
+                        </a>
+
+                        <a href="/party-planner">
+                            🎉 Party Planner
+                        </a>
+
+                        <a href="/jewelry-planner">
+                            💎 Jewelry Planner
+                        </a>
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+</body>
+</html>

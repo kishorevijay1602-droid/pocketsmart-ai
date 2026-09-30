@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jewelry Planner - PocketSmart AI</title>
+
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            PocketSmart AI
+        </div>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/home-planner">Home Planner</a>
+            <a href="/party-planner">Party Planner</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </nav>
+
+    </header>
+
+
+    <main class="container">
+
+        <section class="hero">
+
+            <h1>
+                💎 Jewelry Planner
+            </h1>
+
+            <h2>
+                Plan Your Jewelry Within Your Budget
+            </h2>
+
+            <p>
+                Enter your budget and jewelry requirements
+                to get AI-powered recommendations.
+            </p>
+
+        </section>
+
+
+        <section class="planner-form">
+
+            <form
+                action="/generate-jewelry"
+                method="post"
+                enctype="multipart/form-data"
+            >
+
+                <div class="form-group">
+
+                    <label for="total_budget">
+                        Total Budget
+                    </label>
+
+                    <input
+                        type="number"
+                        id="total_budget"
+                        name="total_budget"
+                        placeholder="Enter your budget"
+                        min="1"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="occasion">
+                        Occasion
+                    </label>
+
+                    <select
+                        id="occasion"
+                        name="occasion"
+                        required
+                    >
+
+                        <option value="">
+                            Select Occasion
+                        </option>
+
+                        <option value="Wedding">
+                            Wedding
+                        </option>
+
+                        <option value="Engagement">
+                            Engagement
+                        </option>
+
+                        <option value="Birthday">
+                            Birthday
+                        </option>
+
+                        <option value="Festival">
+                            Festival
+                        </option>
+
+                        <option value="Daily Wear">
+                            Daily Wear
+                        </option>
+
+                        <option value="Gift">
+                            Gift
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="jewelry_type">
+                        Jewelry Type
+                    </label>
+
+                    <select
+                        id="jewelry_type"
+                        name="jewelry_type"
+                        required
+                    >
+
+                        <option value="">
+                            Select Jewelry Type
+                        </option>
+
+                        <option value="Necklace">
+                            Necklace
+                        </option>
+
+                        <option value="Earrings">
+                            Earrings
+                        </option>
+
+                        <option value="Bangle">
+                            Bangle
+                        </option>
+
+                        <option value="Ring">
+                            Ring
+                        </option>
+
+                        <option value="Chain">
+                            Chain
+                        </option>
+
+                        <option value="Jewelry Set">
+                            Jewelry Set
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="additional_requirements">
+                        Additional Requirements
+                    </label>
+
+                    <textarea
+                        id="additional_requirements"
+                        name="additional_requirements"
+                        rows="5"
+                        placeholder="Enter any additional requirements..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="image">
+                        Upload Jewelry Image (Optional)
+                    </label>
+
+                    <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        accept="image/*"
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="button"
+                >
+                    Generate Jewelry Recommendations
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 PocketSmart AI Budget Planner
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

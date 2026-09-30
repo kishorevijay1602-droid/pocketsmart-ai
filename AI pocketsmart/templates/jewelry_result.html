@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Jewelry Plan - PocketSmart AI
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/styles.css"
+    >
+
+    <style>
+
+        .result-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .result-header h1 {
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .result-header p {
+            color: #64748b;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow:
+                0 4px 15px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        .summary-card h3 {
+            margin-top: 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .summary-card p {
+            margin-bottom: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .recommendation-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow:
+                0 4px 15px
+                rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+
+        .recommendation-card h2 {
+            margin-top: 0;
+            color: #111827;
+        }
+
+        .ai-result {
+            white-space: pre-wrap;
+            line-height: 1.7;
+            color: #334155;
+        }
+
+        .links-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow:
+                0 4px 15px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        .shopping-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .shopping-links a {
+            display: inline-block;
+            padding: 10px 18px;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .shopping-links a:hover {
+            opacity: 0.85;
+        }
+
+        .action-buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .action-buttons a {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 800px) {
+
+            .summary-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="container">
+
+            <a
+                href="/"
+                class="logo"
+            >
+                PocketSmart AI
+            </a>
+
+            <div class="nav-links">
+
+                <a href="/">
+                    Home
+                </a>
+
+                <a href="/jewelry-planner">
+                    Jewelry Planner
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <main class="result-container">
+
+        <div class="result-header">
+
+            <h1>
+                Your Jewelry Plan
+            </h1>
+
+            <p>
+                AI-powered jewelry recommendations
+                within your budget
+            </p>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="summary-grid">
+
+            <div class="summary-card">
+
+                <h3>
+                    Budget
+                </h3>
+
+                <p>
+                    ₹{{ budget }}
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>
+                    Occasion
+                </h3>
+
+                <p>
+                    {{ occasion }}
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>
+                    Jewelry Type
+                </h3>
+
+                <p>
+                    {{ jewelry_type }}
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>
+                    Image
+                </h3>
+
+                <p>
+
+                    {% if image_uploaded %}
+
+                        Uploaded
+
+                    {% else %}
+
+                        Not uploaded
+
+                    {% endif %}
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- AI RECOMMENDATIONS -->
+
+        <div class="recommendation-card">
+
+            <h2>
+                AI Recommendations
+            </h2>
+
+            <div class="ai-result">
+                {{ recommendations }}
+            </div>
+
+        </div>
+
+
+        <!-- SHOPPING LINKS -->
+
+        {% if shopping_links %}
+
+        <div class="links-card">
+
+            <h2>
+                Shopping Links
+            </h2>
+
+            <div class="shopping-links">
+
+                {% for name, url in shopping_links.items() %}
+
+                    <a
+                        href="{{ url }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {{ name | title }}
+                    </a>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- ACTION -->
+
+        <div class="action-buttons">
+
+            <a href="/jewelry-planner">
+                Create Another Jewelry Plan
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

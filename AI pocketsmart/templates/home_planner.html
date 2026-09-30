@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Home Planner - PocketSmart AI</title>
+
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            PocketSmart AI
+        </div>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </nav>
+
+    </header>
+
+
+    <main class="container">
+
+        <section class="hero">
+
+            <h1>🏠 Home Planner</h1>
+
+            <h2>Plan Your Home Within Your Budget</h2>
+
+            <p>
+                Enter your budget and requirements to get
+                AI-powered home recommendations.
+            </p>
+
+        </section>
+
+
+        <section class="info-section">
+
+            <form action="/generate-home" method="post">
+
+                <div class="form-group">
+
+                    <label for="total_budget">
+                        Total Budget
+                    </label>
+
+                    <input
+                        type="number"
+                        id="total_budget"
+                        name="total_budget"
+                        placeholder="Enter your budget"
+                        min="1"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="room_type">
+                        Room Type
+                    </label>
+
+                    <select
+                        id="room_type"
+                        name="room_type"
+                        required
+                    >
+
+                        <option value="">
+                            Select Room Type
+                        </option>
+
+                        <option value="Living Room">
+                            Living Room
+                        </option>
+
+                        <option value="Bedroom">
+                            Bedroom
+                        </option>
+
+                        <option value="Kitchen">
+                            Kitchen
+                        </option>
+
+                        <option value="Dining Room">
+                            Dining Room
+                        </option>
+
+                        <option value="Home Office">
+                            Home Office
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="num_items">
+                        Number of Items
+                    </label>
+
+                    <input
+                        type="number"
+                        id="num_items"
+                        name="num_items"
+                        value="5"
+                        min="1"
+                        max="20"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="additional_requirements">
+                        Additional Requirements
+                    </label>
+
+                    <textarea
+                        id="additional_requirements"
+                        name="additional_requirements"
+                        rows="5"
+                        placeholder="Enter any additional requirements..."
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="button"
+                >
+                    Generate Home Recommendations
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 PocketSmart AI Budget Planner
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
