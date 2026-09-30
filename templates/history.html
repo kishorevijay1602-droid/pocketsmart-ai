@@ -10,9 +10,8 @@
 
     <style>
         .history-page {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 20px 60px;
+            padding: 50px 20px;
+            min-height: 70vh;
         }
 
         .history-header {
@@ -21,13 +20,13 @@
         }
 
         .history-header h1 {
-            color: #2563eb;
+            color: #2864e8;
             font-size: 38px;
             margin-bottom: 10px;
         }
 
         .history-header p {
-            color: #64748b;
+            color: #555;
             font-size: 17px;
         }
 
@@ -39,8 +38,8 @@
         .history-actions a {
             display: inline-block;
             margin: 5px;
-            padding: 10px 18px;
-            background: #2563eb;
+            padding: 12px 22px;
+            background: #2864e8;
             color: white;
             text-decoration: none;
             border-radius: 6px;
@@ -48,111 +47,96 @@
         }
 
         .history-actions a:hover {
-            background: #1d4ed8;
+            background: #174bbd;
         }
 
-        .history-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 22px;
+        .history-container {
+            max-width: 1050px;
+            margin: auto;
         }
 
         .history-card {
             background: white;
             border-radius: 12px;
             padding: 25px;
+            margin-bottom: 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e5e7eb;
+            border-left: 5px solid #2864e8;
         }
 
         .history-card h2 {
-            color: #2563eb;
-            font-size: 22px;
-            margin-bottom: 12px;
+            margin-top: 0;
+            color: #222;
         }
 
         .history-card p {
-            color: #64748b;
-            line-height: 1.6;
-            margin-bottom: 8px;
+            color: #555;
+            margin: 8px 0;
         }
 
-        .history-type {
+        .planner-badge {
             display: inline-block;
-            background: #eff6ff;
-            color: #2563eb;
+            background: #eaf1ff;
+            color: #2864e8;
             padding: 6px 12px;
             border-radius: 20px;
-            font-size: 13px;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
-        .view-plan {
+        .view-button {
             display: inline-block;
             margin-top: 15px;
             padding: 10px 18px;
-            background: #2563eb;
+            background: #2864e8;
             color: white;
             text-decoration: none;
             border-radius: 6px;
-            font-weight: 600;
         }
 
-        .view-plan:hover {
-            background: #1d4ed8;
+        .view-button:hover {
+            background: #174bbd;
         }
 
         .empty-history {
+            max-width: 900px;
+            margin: auto;
             background: white;
-            text-align: center;
             padding: 55px 25px;
             border-radius: 12px;
+            text-align: center;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
 
         .empty-history h2 {
-            color: #1e293b;
-            margin-bottom: 12px;
+            color: #222;
         }
 
         .empty-history p {
-            color: #64748b;
-            margin-bottom: 25px;
+            color: #666;
         }
 
-        .planner-links a {
+        .planner-buttons {
+            margin-top: 25px;
+        }
+
+        .planner-buttons a {
             display: inline-block;
             margin: 5px;
-            padding: 10px 16px;
-            background: #2563eb;
+            padding: 11px 18px;
+            background: #2864e8;
             color: white;
             text-decoration: none;
             border-radius: 6px;
-        }
-
-        .planner-links a:hover {
-            background: #1d4ed8;
-        }
-
-        @media (max-width: 600px) {
-            .history-header h1 {
-                font-size: 30px;
-            }
-
-            .history-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
 
 <body>
 
-    <nav class="navbar">
-        <div class="logo">
-            PocketSmart AI
-        </div>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">PocketSmart AI</div>
 
         <nav>
             <a href="/">Home</a>
@@ -160,9 +144,10 @@
             <a href="/history">History</a>
             <a href="/logout">Logout</a>
         </nav>
-    </nav>
+    </header>
 
 
+    <!-- HISTORY PAGE -->
     <main class="history-page">
 
         <div class="history-header">
@@ -180,105 +165,83 @@
         </div>
 
 
-        {% if recommendation_history %}
+        <div class="history-container">
 
-        <div class="history-grid">
+            {% if history and history|length > 0 %}
 
-            {% for item in recommendation_history %}
+                {% for item in history %}
 
-            <div class="history-card">
+                    <div class="history-card">
 
-                <span class="history-type">
-                    {{ item.type }}
-                </span>
+                        <span class="planner-badge">
+                            {{ item.planner }}
+                        </span>
 
-                <h2>
-                    {% if item.type == "Home" %}
-                        🏠 Home Recommendation
-                    {% elif item.type == "Party" %}
-                        🎉 Party Recommendation
-                    {% elif item.type == "Jewelry" %}
-                        💎 Jewelry Recommendation
-                    {% else %}
-                        🤖 AI Recommendation
-                    {% endif %}
-                </h2>
+                        <h2>
+                            {{ item.planner }} Recommendation
+                        </h2>
 
-                {% if item.timestamp %}
-                <p>
-                    <strong>Date:</strong> {{ item.timestamp }}
-                </p>
-                {% endif %}
+                        <p>
+                            <strong>Budget:</strong>
+                            ₹{{ item.budget }}
+                        </p>
 
-                {% if item.budget %}
-                <p>
-                    <strong>Budget:</strong> ₹{{ item.budget }}
-                </p>
-                {% endif %}
+                        <p>
+                            <strong>Details:</strong>
+                            {{ item.details }}
+                        </p>
 
-                {% if item.occasion %}
-                <p>
-                    <strong>Occasion:</strong> {{ item.occasion }}
-                </p>
-                {% endif %}
+                        {% if item.created_at %}
+                        <p>
+                            <strong>Created:</strong>
+                            {{ item.created_at }}
+                        </p>
+                        {% endif %}
 
-                {% if item.room_type %}
-                <p>
-                    <strong>Room:</strong> {{ item.room_type }}
-                </p>
-                {% endif %}
+                        <a
+                            class="view-button"
+                            href="/history/{{ loop.index0 }}"
+                        >
+                            View Full Plan
+                        </a>
 
-                {% if item.party_type %}
-                <p>
-                    <strong>Party Type:</strong> {{ item.party_type }}
-                </p>
-                {% endif %}
+                    </div>
 
-                {% if item.jewelry_type %}
-                <p>
-                    <strong>Jewelry Type:</strong> {{ item.jewelry_type }}
-                </p>
-                {% endif %}
+                {% endfor %}
 
-                <a
-                    href="/history/{{ loop.index0 }}"
-                    class="view-plan"
-                >
-                    View Full Plan →
-                </a>
+            {% else %}
 
-            </div>
+                <div class="empty-history">
 
-            {% endfor %}
+                    <h2>📭 No Recommendations Yet</h2>
 
-        </div>
+                    <p>
+                        You haven't generated any AI plans yet.
+                    </p>
 
-        {% else %}
+                    <div class="planner-buttons">
 
-        <div class="empty-history">
+                        <a href="/home-planner">
+                            🏠 Home Planner
+                        </a>
 
-            <h2>📭 No Recommendations Yet</h2>
+                        <a href="/party-planner">
+                            🎉 Party Planner
+                        </a>
 
-            <p>
-                You haven't generated any AI plans yet.
-            </p>
+                        <a href="/jewelry-planner">
+                            💎 Jewelry Planner
+                        </a>
 
-            <div class="planner-links">
-                <a href="/home-planner">🏠 Home Planner</a>
-                <a href="/party-planner">🎉 Party Planner</a>
-                <a href="/jewelry-planner">💎 Jewelry Planner</a>
-            </div>
+                    </div>
+
+                </div>
+
+            {% endif %}
 
         </div>
-
-        {% endif %}
 
     </main>
-
-
-    <footer>
-        <p>© 2026 PocketSmart AI Budget Planner</p>
-    </footer>
 
 </body>
 </html>
