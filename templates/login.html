@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>PocketSmart AI - Login</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='styles.css') }}"
+    >
+
+    <style>
+
+        .auth-wrapper {
+            min-height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .auth-card h1 {
+            text-align: center;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+
+        .auth-card h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-card label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .auth-card input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+
+        .auth-card input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .auth-card button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .auth-card button:hover {
+            background: #1d4ed8;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 22px;
+        }
+
+        .auth-footer a {
+            color: #2563eb;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <a
+                href="/"
+                class="logo"
+            >
+                PocketSmart AI
+            </a>
+
+            <div class="nav-links">
+
+                <a href="/">Home</a>
+
+                <a href="/register">Register</a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <main class="container">
+
+        <div class="auth-wrapper">
+
+            <div class="auth-card">
+
+                <h1>PocketSmart AI</h1>
+
+                <h2>Login</h2>
+
+                <form
+                    method="post"
+                    action="/login"
+                >
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        required
+                    >
+
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+
+                    <button type="submit">
+                        Login
+                    </button>
+
+                </form>
+
+
+                <div class="auth-footer">
+
+                    <p>
+                        New user?
+                        <a href="/register">
+                            Create an account
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 PocketSmart AI. All rights reserved.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

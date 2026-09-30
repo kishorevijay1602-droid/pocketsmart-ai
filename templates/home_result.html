@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Home Recommendations - PocketSmart AI</title>
+
+    <link rel="stylesheet" href="/static/styles.css">
+
+    <style>
+        .result-card {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+
+        .result-card h2 {
+            color: #2563eb;
+            margin-bottom: 20px;
+        }
+
+        .budget-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .summary-box {
+            background: #f5f7fb;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .summary-box strong {
+            display: block;
+            font-size: 18px;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+
+        .recommendation-text {
+            background: #f9fafb;
+            padding: 25px;
+            border-radius: 10px;
+            white-space: pre-wrap;
+            line-height: 1.7;
+        }
+
+        .shopping-links {
+            margin-top: 25px;
+        }
+
+        .shopping-links a {
+            display: inline-block;
+            margin: 8px;
+            padding: 10px 16px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+        .shopping-links a:hover {
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 800px) {
+            .budget-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            PocketSmart AI
+        </div>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/home-planner">Home Planner</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </nav>
+
+    </header>
+
+
+    <main class="container">
+
+        <section class="hero">
+
+            <h1>🏠 Home Recommendations</h1>
+
+            <h2>
+                AI-Powered Home Planning
+            </h2>
+
+            <p>
+                Here are your personalized home recommendations
+                based on your budget.
+            </p>
+
+        </section>
+
+
+        <section class="result-card">
+
+            <h2>Budget Summary</h2>
+
+            <div class="budget-summary">
+
+                <div class="summary-box">
+
+                    <strong>Total Budget</strong>
+
+                    <span>
+                        ₹{{ budget }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <strong>Room Type</strong>
+
+                    <span>
+                        {{ room_type }}
+                    </span>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <strong>Number of Items</strong>
+
+                    <span>
+                        {{ num_items }}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="result-card">
+
+            <h2>🤖 AI Recommendations</h2>
+
+            <div class="recommendation-text">
+{{ recommendations }}
+            </div>
+
+        </section>
+
+
+        <section class="result-card">
+
+            <h2>🛒 Shopping Links</h2>
+
+            <div class="shopping-links">
+
+                {% for name, url in shopping_links.items() %}
+
+                    <a
+                        href="{{ url }}"
+                        target="_blank"
+                    >
+                        {{ name | capitalize }}
+                    </a>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <section style="text-align: center;">
+
+            <a
+                href="/home-planner"
+                class="button"
+            >
+                Create Another Home Plan
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 PocketSmart AI Budget Planner
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Saved Plan - PocketSmart AI
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='styles.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="page-header">
+
+            <div>
+
+                <h1>
+                    {{ plan.planner }}
+                </h1>
+
+                <p>
+                    Saved Recommendation
+                </p>
+
+            </div>
+
+            <div class="header-actions">
+
+                <a
+                    href="/history"
+                    class="btn"
+                >
+                    Back to History
+                </a>
+
+                <a
+                    href="/dashboard"
+                    class="btn"
+                >
+                    Dashboard
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- PLAN DETAILS -->
+        <section class="history-detail-section">
+
+            <div class="detail-card">
+
+                <div class="detail-header">
+
+                    <h2>
+                        Plan Details
+                    </h2>
+
+                </div>
+
+
+                <div class="detail-info">
+
+                    <p>
+                        <strong>
+                            Planner:
+                        </strong>
+
+                        {{ plan.planner }}
+                    </p>
+
+
+                    <p>
+                        <strong>
+                            Budget:
+                        </strong>
+
+                        ₹{{ plan.budget }}
+                    </p>
+
+
+                    <p>
+                        <strong>
+                            Details:
+                        </strong>
+
+                        {{ plan.details }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- AI RECOMMENDATION -->
+            <div class="detail-card">
+
+                <div class="detail-header">
+
+                    <h2>
+                        AI Recommendation
+                    </h2>
+
+                </div>
+
+
+                {% if plan.recommendations %}
+
+                    <div class="full-recommendation">
+
+                        {{ plan.recommendations }}
+
+                    </div>
+
+                {% else %}
+
+                    <p>
+                        No AI recommendation was saved
+                        for this plan.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- SHOPPING LINKS -->
+            <div class="detail-card">
+
+                <div class="detail-header">
+
+                    <h2>
+                        Shopping Links
+                    </h2>
+
+                </div>
+
+
+                {% if plan.shopping_links %}
+
+                    <div class="shopping-link-list">
+
+                        {% for name, link in plan.shopping_links.items() %}
+
+                            <a
+                                href="{{ link }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="shopping-link large-link"
+                            >
+                                Open {{ name|capitalize }}
+                            </a>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <p>
+                        No shopping links available.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- BACK BUTTON -->
+            <div class="bottom-actions">
+
+                <a
+                    href="/history"
+                    class="btn primary-btn"
+                >
+                    ← Back to History
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Party Planner - PocketSmart AI</title>
+
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            PocketSmart AI
+        </div>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/home-planner">Home Planner</a>
+            <a href="/party-planner">Party Planner</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </nav>
+
+    </header>
+
+
+    <main class="container">
+
+        <section class="hero">
+
+            <h1>🎉 Party Planner</h1>
+
+            <h2>Plan Your Party Within Your Budget</h2>
+
+            <p>
+                Enter your budget, party type and guest details
+                to get AI-powered party recommendations.
+            </p>
+
+        </section>
+
+
+        <section class="info-section">
+
+            <form action="/generate-party" method="post">
+
+                <div class="form-group">
+
+                    <label for="total_budget">
+                        Total Budget
+                    </label>
+
+                    <input
+                        type="number"
+                        id="total_budget"
+                        name="total_budget"
+                        placeholder="Enter your budget"
+                        min="1"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="party_type">
+                        Party Type
+                    </label>
+
+                    <select
+                        id="party_type"
+                        name="party_type"
+                        required
+                    >
+
+                        <option value="">
+                            Select Party Type
+                        </option>
+
+                        <option value="Birthday Party">
+                            Birthday Party
+                        </option>
+
+                        <option value="Wedding Party">
+                            Wedding Party
+                        </option>
+
+                        <option value="Engagement Party">
+                            Engagement Party
+                        </option>
+
+                        <option value="Anniversary Party">
+                            Anniversary Party
+                        </option>
+
+                        <option value="Family Party">
+                            Family Party
+                        </option>
+
+                        <option value="Corporate Party">
+                            Corporate Party
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="number_of_guests">
+                        Number of Guests
+                    </label>
+
+                    <input
+                        type="number"
+                        id="number_of_guests"
+                        name="number_of_guests"
+                        placeholder="Enter number of guests"
+                        min="1"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="venue_type">
+                        Venue Type
+                    </label>
+
+                    <select
+                        id="venue_type"
+                        name="venue_type"
+                    >
+
+                        <option value="not specified">
+                            Select Venue Type
+                        </option>
+
+                        <option value="Home">
+                            Home
+                        </option>
+
+                        <option value="Restaurant">
+                            Restaurant
+                        </option>
+
+                        <option value="Banquet Hall">
+                            Banquet Hall
+                        </option>
+
+                        <option value="Outdoor">
+                            Outdoor
+                        </option>
+
+                        <option value="Hotel">
+                            Hotel
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="button"
+                >
+                    Generate Party Recommendations
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 PocketSmart AI Budget Planner
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

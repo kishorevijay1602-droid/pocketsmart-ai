@@ -1,0 +1,291 @@
+/* =========================================================
+   PocketSmart AI - Original UI
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    width: 100%;
+    background: #2563eb;
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 8%;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 25px;
+}
+
+.navbar nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.navbar nav a:hover {
+    text-decoration: underline;
+}
+
+/* ================= MAIN ================= */
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.hero h1 {
+    font-size: 44px;
+    color: #2563eb;
+    margin-bottom: 10px;
+}
+
+.hero h2 {
+    font-size: 25px;
+    color: #111827;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #6b7280;
+    font-size: 17px;
+}
+
+/* ================= PLANNER GRID ================= */
+
+.planner-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+/* ================= PLANNER CARD ================= */
+
+.planner-card {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.08);
+
+    text-align: center;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.planner-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.planner-card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.planner-card p {
+    color: #6b7280;
+    margin-bottom: 25px;
+}
+
+/* ================= BUTTON ================= */
+
+.button {
+    display: inline-block;
+
+    background: #2563eb;
+    color: white;
+
+    text-decoration: none;
+
+    padding: 12px 20px;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+
+.button:hover {
+    background: #1d4ed8;
+}
+
+/* ================= INFORMATION ================= */
+
+.info-section {
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.06);
+
+    text-align: center;
+}
+
+.info-section h2 {
+    margin-bottom: 30px;
+    color: #111827;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.steps div {
+    padding: 20px;
+}
+
+.steps strong {
+    display: block;
+
+    font-size: 18px;
+
+    color: #2563eb;
+
+    margin-bottom: 8px;
+}
+
+.steps p {
+    color: #6b7280;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #111827;
+    color: white;
+
+    text-align: center;
+
+    padding: 20px;
+
+    margin-top: 30px;
+}
+
+/* ================= FORMS ================= */
+
+.form-group {
+    max-width: 650px;
+    margin: 0 auto 22px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #111827;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.info-section form {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.info-section form .button {
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 800px) {
+
+    .planner-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero h2 {
+        font-size: 21px;
+    }
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Recommendation History - PocketSmart AI</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='styles.css') }}"
+    >
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="page-header">
+
+            <div>
+                <h1>Recommendation History</h1>
+
+                <p>
+                    Welcome, {{ username }}
+                </p>
+            </div>
+
+            <div class="header-actions">
+
+                <a
+                    href="/dashboard"
+                    class="btn"
+                >
+                    Dashboard
+                </a>
+
+                <a
+                    href="/logout"
+                    class="btn"
+                >
+                    Logout
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- HISTORY SECTION -->
+        <section class="history-section">
+
+            {% if history %}
+
+                <div class="history-grid">
+
+                    {% for item in history %}
+
+                        <div class="history-card">
+
+                            <div class="history-card-header">
+
+                                <h2>
+                                    {{ item.planner }}
+                                </h2>
+
+                            </div>
+
+
+                            <div class="history-card-body">
+
+                                <p>
+                                    <strong>Budget:</strong>
+                                    ₹{{ item.budget }}
+                                </p>
+
+                                <p>
+                                    <strong>Details:</strong>
+                                    {{ item.details }}
+                                </p>
+
+
+                                {% if item.recommendations %}
+
+                                    <p>
+                                        <strong>
+                                            AI Recommendation:
+                                        </strong>
+                                    </p>
+
+                                    <div class="recommendation-preview">
+
+                                        {{ item.recommendations[:300] }}
+
+                                        {% if item.recommendations|length > 300 %}
+                                            ...
+                                        {% endif %}
+
+                                    </div>
+
+                                {% endif %}
+
+
+                                {% if item.shopping_links %}
+
+                                    <div class="shopping-links">
+
+                                        <strong>
+                                            Shopping:
+                                        </strong>
+
+                                        <div class="link-row">
+
+                                            {% for name, link in item.shopping_links.items() %}
+
+                                                <a
+                                                    href="{{ link }}"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    class="shopping-link"
+                                                >
+                                                    {{ name|capitalize }}
+                                                </a>
+
+                                            {% endfor %}
+
+                                        </div>
+
+                                    </div>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="history-card-footer">
+
+                                <a
+                                    href="/history/{{ loop.index0 }}"
+                                    class="btn primary-btn"
+                                >
+                                    View Full Plan
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="empty-history">
+
+                    <h2>No Recommendations Yet</h2>
+
+                    <p>
+                        You haven't generated any AI plans yet.
+                    </p>
+
+                    <div class="planner-buttons">
+
+                        <a
+                            href="/home-planner"
+                            class="btn primary-btn"
+                        >
+                            Home Planner
+                        </a>
+
+                        <a
+                            href="/party-planner"
+                            class="btn primary-btn"
+                        >
+                            Party Planner
+                        </a>
+
+                        <a
+                            href="/jewelry-planner"
+                            class="btn primary-btn"
+                        >
+                            Jewelry Planner
+                        </a>
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+    </div>
+
+</body>
+</html>
