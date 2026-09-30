@@ -2,201 +2,283 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Recommendation History - PocketSmart AI</title>
 
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', path='styles.css') }}"
-    >
+    <link rel="stylesheet" href="/static/styles.css">
+
+    <style>
+        .history-page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .history-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .history-header h1 {
+            color: #2563eb;
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .history-header p {
+            color: #64748b;
+            font-size: 17px;
+        }
+
+        .history-actions {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .history-actions a {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 18px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .history-actions a:hover {
+            background: #1d4ed8;
+        }
+
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 22px;
+        }
+
+        .history-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e5e7eb;
+        }
+
+        .history-card h2 {
+            color: #2563eb;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .history-card p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .history-type {
+            display: inline-block;
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .view-plan {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 18px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .view-plan:hover {
+            background: #1d4ed8;
+        }
+
+        .empty-history {
+            background: white;
+            text-align: center;
+            padding: 55px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .empty-history h2 {
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .empty-history p {
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        .planner-links a {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 16px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .planner-links a:hover {
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 600px) {
+            .history-header h1 {
+                font-size: 30px;
+            }
+
+            .history-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="container">
+    <nav class="navbar">
+        <div class="logo">
+            PocketSmart AI
+        </div>
 
-        <!-- HEADER -->
-        <header class="page-header">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/history">History</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </nav>
 
-            <div>
-                <h1>Recommendation History</h1>
 
+    <main class="history-page">
+
+        <div class="history-header">
+            <h1>📋 Recommendation History</h1>
+
+            <p>
+                View your previously generated PocketSmart AI plans
+            </p>
+        </div>
+
+
+        <div class="history-actions">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+
+
+        {% if recommendation_history %}
+
+        <div class="history-grid">
+
+            {% for item in recommendation_history %}
+
+            <div class="history-card">
+
+                <span class="history-type">
+                    {{ item.type }}
+                </span>
+
+                <h2>
+                    {% if item.type == "Home" %}
+                        🏠 Home Recommendation
+                    {% elif item.type == "Party" %}
+                        🎉 Party Recommendation
+                    {% elif item.type == "Jewelry" %}
+                        💎 Jewelry Recommendation
+                    {% else %}
+                        🤖 AI Recommendation
+                    {% endif %}
+                </h2>
+
+                {% if item.timestamp %}
                 <p>
-                    Welcome, {{ username }}
+                    <strong>Date:</strong> {{ item.timestamp }}
                 </p>
-            </div>
+                {% endif %}
 
-            <div class="header-actions">
+                {% if item.budget %}
+                <p>
+                    <strong>Budget:</strong> ₹{{ item.budget }}
+                </p>
+                {% endif %}
+
+                {% if item.occasion %}
+                <p>
+                    <strong>Occasion:</strong> {{ item.occasion }}
+                </p>
+                {% endif %}
+
+                {% if item.room_type %}
+                <p>
+                    <strong>Room:</strong> {{ item.room_type }}
+                </p>
+                {% endif %}
+
+                {% if item.party_type %}
+                <p>
+                    <strong>Party Type:</strong> {{ item.party_type }}
+                </p>
+                {% endif %}
+
+                {% if item.jewelry_type %}
+                <p>
+                    <strong>Jewelry Type:</strong> {{ item.jewelry_type }}
+                </p>
+                {% endif %}
 
                 <a
-                    href="/dashboard"
-                    class="btn"
+                    href="/history/{{ loop.index0 }}"
+                    class="view-plan"
                 >
-                    Dashboard
-                </a>
-
-                <a
-                    href="/logout"
-                    class="btn"
-                >
-                    Logout
+                    View Full Plan →
                 </a>
 
             </div>
 
-        </header>
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-history">
+
+            <h2>📭 No Recommendations Yet</h2>
+
+            <p>
+                You haven't generated any AI plans yet.
+            </p>
+
+            <div class="planner-links">
+                <a href="/home-planner">🏠 Home Planner</a>
+                <a href="/party-planner">🎉 Party Planner</a>
+                <a href="/jewelry-planner">💎 Jewelry Planner</a>
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </main>
 
 
-        <!-- HISTORY SECTION -->
-        <section class="history-section">
-
-            {% if history %}
-
-                <div class="history-grid">
-
-                    {% for item in history %}
-
-                        <div class="history-card">
-
-                            <div class="history-card-header">
-
-                                <h2>
-                                    {{ item.planner }}
-                                </h2>
-
-                            </div>
-
-
-                            <div class="history-card-body">
-
-                                <p>
-                                    <strong>Budget:</strong>
-                                    ₹{{ item.budget }}
-                                </p>
-
-                                <p>
-                                    <strong>Details:</strong>
-                                    {{ item.details }}
-                                </p>
-
-
-                                {% if item.recommendations %}
-
-                                    <p>
-                                        <strong>
-                                            AI Recommendation:
-                                        </strong>
-                                    </p>
-
-                                    <div class="recommendation-preview">
-
-                                        {{ item.recommendations[:300] }}
-
-                                        {% if item.recommendations|length > 300 %}
-                                            ...
-                                        {% endif %}
-
-                                    </div>
-
-                                {% endif %}
-
-
-                                {% if item.shopping_links %}
-
-                                    <div class="shopping-links">
-
-                                        <strong>
-                                            Shopping:
-                                        </strong>
-
-                                        <div class="link-row">
-
-                                            {% for name, link in item.shopping_links.items() %}
-
-                                                <a
-                                                    href="{{ link }}"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    class="shopping-link"
-                                                >
-                                                    {{ name|capitalize }}
-                                                </a>
-
-                                            {% endfor %}
-
-                                        </div>
-
-                                    </div>
-
-                                {% endif %}
-
-                            </div>
-
-
-                            <div class="history-card-footer">
-
-                                <a
-                                    href="/history/{{ loop.index0 }}"
-                                    class="btn primary-btn"
-                                >
-                                    View Full Plan
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                    {% endfor %}
-
-                </div>
-
-            {% else %}
-
-                <div class="empty-history">
-
-                    <h2>No Recommendations Yet</h2>
-
-                    <p>
-                        You haven't generated any AI plans yet.
-                    </p>
-
-                    <div class="planner-buttons">
-
-                        <a
-                            href="/home-planner"
-                            class="btn primary-btn"
-                        >
-                            Home Planner
-                        </a>
-
-                        <a
-                            href="/party-planner"
-                            class="btn primary-btn"
-                        >
-                            Party Planner
-                        </a>
-
-                        <a
-                            href="/jewelry-planner"
-                            class="btn primary-btn"
-                        >
-                            Jewelry Planner
-                        </a>
-
-                    </div>
-
-                </div>
-
-            {% endif %}
-
-        </section>
-
-    </div>
+    <footer>
+        <p>© 2026 PocketSmart AI Budget Planner</p>
+    </footer>
 
 </body>
 </html>
